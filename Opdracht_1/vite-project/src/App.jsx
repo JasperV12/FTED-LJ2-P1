@@ -78,16 +78,51 @@ function getNextSlide(current, delta, total) {
 function App() {
   const [slide, setSlide] = useState(0)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobilePinned, setIsMobilePinned] = useState(false)
+  const [headerProgress, setHeaderProgress] = useState(0)
+  const [headerTop, setHeaderTop] = useState(68)
   const currentSlide = heroSlides[slide]
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 80)
+    const handleScroll = () => {
+      if (window.innerWidth <= 600) {
+        setIsScrolled(false)
+        setHeaderProgress(0)
+        setHeaderTop(0)
+        setIsMobilePinned((wasPinned) => (
+          wasPinned ? window.scrollY > 0 : window.scrollY >= 48
+        ))
+        return
+      }
+
+      setIsMobilePinned(false)
+      const headerHeight = window.innerWidth <= 900 ? 90 : 120
+      const utilityHeight = 68
+      const progress = Math.min(
+        Math.max((window.scrollY - utilityHeight) / headerHeight, 0),
+        1,
+      )
+
+      setHeaderTop(Math.max(utilityHeight - window.scrollY, 0))
+      setHeaderProgress(progress)
+      setIsScrolled(progress === 1)
+    }
 
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll)
 
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
+    }
   }, [])
+
+  const fullHeaderHeight = window.innerWidth <= 900 ? 90 : 120
+  const compactHeaderHeight = window.innerWidth <= 900 ? 64 : 72
+  const compactHeaderWidth = Math.min(1125, window.innerWidth - 48)
+  const headerWidth = window.innerWidth + (compactHeaderWidth - window.innerWidth) * headerProgress
+  const headerHeight = fullHeaderHeight + (compactHeaderHeight - fullHeaderHeight) * headerProgress
 
   return (
     <main>
@@ -107,8 +142,16 @@ function App() {
       </div>
 
       {/* Site header */}
-      <div className="site-header-shell">
-        <header className={`site-header${isScrolled ? ' is-scrolled' : ''}`}>
+      <div className={`site-header-shell${isScrolled ? ' is-scrolled' : ''}${isMobilePinned ? ' is-mobile-pinned' : ''}`}>
+        <header
+          className={`site-header${isScrolled ? ' is-scrolled' : ''}${isMobilePinned ? ' is-mobile-pinned' : ''}`}
+          style={{
+            '--header-top': `${headerTop}px`,
+            '--header-progress': headerProgress,
+            width: `${headerWidth}px`,
+            minHeight: `${headerHeight}px`,
+          }}
+        >
           <div className="site-header-inner container">
             <a className="brand" href="#top" aria-label={`${brand.name} home`}>
               <span className="brand-mark">{brand.mark}</span>
@@ -133,7 +176,13 @@ function App() {
       </div>
 
       {/* Hero slider */}
-      <section className="hero" id="top" style={{ backgroundImage: `url(${currentSlide.image})` }}>
+      <section
+        className="hero"
+        id="top"
+        style={{
+          backgroundImage: `url(${currentSlide.image})`,
+        }}
+      >
         <div className="hero-shade" />
         <div className="container hero-content">
           <div className="hero-copy">

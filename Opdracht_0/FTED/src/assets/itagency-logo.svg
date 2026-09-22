@@ -1,0 +1,7 @@
+<svg width="190" height="44" viewBox="0 0 190 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="1" y="7" width="30" height="30" rx="7" fill="#0D67C2"/>
+  <path d="M8 16L14 22L8 28M23 16L17 22L23 28" stroke="#F4F7FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M15.5 16L15.5 28" stroke="#5ED4FF" stroke-width="2.6" stroke-linecap="round"/>
+  <text x="42" y="30" fill="#F4F7FC" font-family="Space Grotesk, Arial, sans-serif" font-size="25" font-weight="700">IT</text>
+  <text x="69" y="30" fill="#1686E8" font-family="Space Grotesk, Arial, sans-serif" font-size="25" font-weight="700">Agency</text>
+</svg>

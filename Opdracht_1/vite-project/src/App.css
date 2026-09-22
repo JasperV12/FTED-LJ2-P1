@@ -37,15 +37,22 @@
 /* ---- 3. Site header -------------------------------------- */
 .site-header-shell {
   height: 120px;
+  transition: height 0.35s ease;
+}
+
+.site-header-shell.is-scrolled {
+  height: 120px;
 }
 
 .site-header {
   min-height: 120px;
   position: relative;
+  left: 50%;
   z-index: 10;
   width: 100%;
+  transform: translateX(-50%);
   background: #fff;
-  transition: width 0.35s ease, min-height 0.35s ease, box-shadow 0.35s ease;
+  transition: top 0.35s ease, width 0.35s ease, min-height 0.35s ease, box-shadow 0.35s ease;
 }
 
 .site-header-inner {
@@ -57,13 +64,16 @@
 
 .site-header.is-scrolled {
   top: 0;
-  left: 0;
-  right: 0;
+  left: 50%;
   width: min(1125px, calc(100% - 48px));
   min-height: 72px;
-  margin-inline: auto;
+  transform: translateX(-50%);
   box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
   position: fixed;
+}
+
+.site-header-shell.is-scrolled + .hero {
+  margin-top: -120px;
 }
 
 .brand {
@@ -133,7 +143,7 @@ nav .active {
   background-size: cover;
   background-position: center;
   color: #fff;
-  transition: background-image 0.4s ease;
+  transition: background-image 0.4s ease, margin-top 0.35s ease;
 }
 
 .hero-shade {
@@ -379,12 +389,20 @@ nav .active {
     height: 90px;
   }
 
+  .site-header-shell.is-scrolled {
+    height: 90px;
+  }
+
   .site-header {
     min-height: 90px;
   }
 
   .site-header.is-scrolled {
     min-height: 64px;
+  }
+
+  .site-header-shell.is-scrolled + .hero {
+    margin-top: -90px;
   }
 
   nav {
@@ -408,6 +426,10 @@ nav .active {
 @media (max-width: 600px) {
   .container {
     width: min(100% - 28px, 1125px);
+  }
+
+  .site-header {
+    top: 48px;
   }
 
   .site-header.is-scrolled {

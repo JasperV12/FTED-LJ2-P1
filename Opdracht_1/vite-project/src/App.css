@@ -1,0 +1,506 @@
+/* ---- 1. Layout helpers ----------------------------------- */
+.container {
+  width: min(1125px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+/* ---- 2. Utility bar -------------------------------------- */
+.utility-bar {
+  background: #303030;
+  color: #f5f5f5;
+  font-size: 13px;
+}
+
+.utility-content {
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.socials {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 23px;
+  font-weight: bold;
+}
+
+.socials a {
+  background: #1260e8;
+  border-radius: 22px;
+  padding: 10px 29px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* ---- 3. Site header -------------------------------------- */
+.site-header-shell {
+  height: 120px;
+}
+
+.site-header {
+  min-height: 120px;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  background: #fff;
+  transition: width 0.35s ease, min-height 0.35s ease, box-shadow 0.35s ease;
+}
+
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  min-height: inherit;
+}
+
+.site-header.is-scrolled {
+  top: 0;
+  left: 0;
+  right: 0;
+  width: min(1125px, calc(100% - 48px));
+  min-height: 72px;
+  margin-inline: auto;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+  position: fixed;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: auto;
+}
+
+.brand-mark {
+  color: #1260e8;
+  font-size: 42px;
+  line-height: 0.8;
+}
+
+.brand strong,
+.brand small {
+  display: block;
+  color: #111;
+}
+
+.brand strong {
+  font-size: 23px;
+  letter-spacing: 0.5px;
+}
+
+.brand small {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  gap: 34px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+nav a {
+  padding-block: 15px;
+}
+
+nav a:hover,
+nav .active {
+  color: #1260e8;
+}
+
+.search-button,
+.menu-button {
+  border: 0;
+  background: #fafafa;
+  width: 50px;
+  height: 50px;
+  font-size: 27px;
+  cursor: pointer;
+}
+
+.menu-button {
+  display: none;
+}
+
+/* ---- 4. Hero slider -------------------------------------- */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  transition: background-image 0.4s ease;
+}
+
+.hero-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.08));
+}
+
+.hero-content {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-copy {
+  max-width: 700px;
+  padding-top: 38px;
+}
+
+.hero h1 {
+  display: inline-block;
+  margin: 0 0 48px;
+  padding: 8px 12px;
+  background: #1260e8;
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.hero-copy p {
+  max-width: 670px;
+  margin-bottom: 48px;
+  padding: 13px 15px;
+  background: #050505;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.outline-button {
+  border: 2px solid #fff;
+  padding: 17px 45px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background 0.2s, color 0.2s;
+}
+
+.outline-button:hover {
+  background: #fff;
+  color: #222;
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  width: 65px;
+  height: 80px;
+  background: #050505;
+  color: white;
+  font-size: 55px;
+  cursor: pointer;
+}
+
+.previous {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+/* ---- 5. Offers section ----------------------------------- */
+.offers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+.offers-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.offers-copy {
+  padding: 110px 42px 70px;
+}
+
+.eyebrow {
+  color: #1260e8;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.offers-copy h2,
+.section-heading h2 {
+  margin: 14px 0;
+  color: #2c2c2c;
+  font-size: 37px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.lead {
+  border-left: 2px solid #1260e8;
+  padding: 4px 0 4px 23px;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.offer-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin: 45px 0 36px;
+}
+
+.pale-icon {
+  color: #d4d4d4;
+  font-size: 50px;
+}
+
+.offer-items h3,
+.service-card h3 {
+  margin: 8px 0 12px;
+  font-size: 17px;
+  text-transform: uppercase;
+}
+
+.offer-items p,
+.service-card p {
+  color: #6c6c6c;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.offer-items a {
+  display: inline-block;
+  margin-top: 12px;
+  color: #777;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.dark-button {
+  display: inline-block;
+  padding: 16px;
+  background: #333;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* ---- 6. Services section --------------------------------- */
+.services {
+  min-height: 100vh;
+  padding: 90px 0 110px;
+  text-align: center;
+}
+
+.section-heading {
+  max-width: 650px;
+  margin: auto;
+}
+
+.section-heading h2 {
+  margin-bottom: 15px;
+}
+
+.dots {
+  color: #bbb;
+  letter-spacing: 3px;
+}
+
+.section-heading > p:last-child {
+  margin-top: 18px;
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 35px;
+  margin-top: 48px;
+}
+
+.service-card {
+  padding: 0 8px;
+}
+
+.service-icon {
+  display: grid;
+  place-items: center;
+  width: 75px;
+  height: 75px;
+  margin: auto auto 26px;
+  border-radius: 50%;
+  background: #1260e8;
+  color: white;
+  font-size: 32px;
+}
+
+.service-card .eyebrow {
+  margin-bottom: 8px;
+}
+
+.service-card h3 {
+  font-size: 15px;
+}
+
+/* ---- 7. Back-to-top button ------------------------------- */
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 18px;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  background: #1260e8;
+  color: #fff;
+  font-size: 25px;
+  box-shadow: 0 2px 10px #aaa;
+}
+
+/* ---- 8. Responsive breakpoints --------------------------- */
+/* Tablet */
+@media (max-width: 900px) {
+  .site-header-shell {
+    height: 90px;
+  }
+
+  .site-header {
+    min-height: 90px;
+  }
+
+  .site-header.is-scrolled {
+    min-height: 64px;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  .offers-copy {
+    padding: 65px 28px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .container {
+    width: min(100% - 28px, 1125px);
+  }
+
+  .site-header.is-scrolled {
+    width: calc(100% - 28px);
+  }
+
+  .utility-content {
+    min-height: 48px;
+    gap: 8px;
+    font-size: 11px;
+  }
+
+  .utility-content > span:nth-child(2),
+  .utility-content > span:nth-child(3),
+  .socials span {
+    display: none;
+  }
+
+  .socials a {
+    padding: 8px 12px;
+  }
+
+  .brand-mark {
+    font-size: 35px;
+  }
+
+  .brand strong {
+    font-size: 19px;
+  }
+
+  .brand small {
+    font-size: 10px;
+  }
+
+  .search-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hero,
+  .hero-content {
+    min-height: 100vh;
+  }
+
+  .hero-copy {
+    padding-inline: 28px;
+  }
+
+  .hero h1 {
+    font-size: 31px;
+    margin-bottom: 25px;
+  }
+
+  .hero-copy p {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  .slider-arrow {
+    width: 38px;
+    height: 55px;
+    font-size: 38px;
+  }
+
+  .offers {
+    display: block;
+    min-height: 100vh;
+  }
+
+  .offers-image {
+    height: 360px;
+  }
+
+  .offers-copy h2,
+  .section-heading h2 {
+    font-size: 30px;
+  }
+
+  .offer-items {
+    gap: 18px;
+  }
+
+  .services {
+    padding: 70px 0;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .back-to-top {
+    right: 14px;
+    bottom: 14px;
+  }
+}

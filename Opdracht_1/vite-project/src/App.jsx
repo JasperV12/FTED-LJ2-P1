@@ -84,6 +84,16 @@ function App() {
   const currentSlide = heroSlides[slide]
 
   useEffect(() => {
+    const slideInterval = window.setInterval(() => {
+      setSlide((currentSlideIndex) => (
+        getNextSlide(currentSlideIndex, 1, heroSlides.length)
+      ))
+    }, 7000)
+
+    return () => window.clearInterval(slideInterval)
+  }, [])
+
+  useEffect(() => {
     const handleScroll = () => {
       if (window.innerWidth <= 600) {
         setIsScrolled(false)
@@ -194,8 +204,8 @@ function App() {
             </div>
           </div>
         </div>
-        <button className="slider-arrow previous" onClick={() => setSlide(getNextSlide(slide, -1, heroSlides.length))} aria-label="Previous slide">‹</button>
-        <button className="slider-arrow next" onClick={() => setSlide(getNextSlide(slide, 1, heroSlides.length))} aria-label="Next slide">›</button>
+        <button className="slider-arrow previous" onClick={() => setSlide((currentSlideIndex) => getNextSlide(currentSlideIndex, -1, heroSlides.length))} aria-label="Previous slide">‹</button>
+        <button className="slider-arrow next" onClick={() => setSlide((currentSlideIndex) => getNextSlide(currentSlideIndex, 1, heroSlides.length))} aria-label="Next slide">›</button>
       </section>
 
       {/* Offers section */}

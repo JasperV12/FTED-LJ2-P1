@@ -352,13 +352,17 @@ footer span {
 
 .hero-arrow {
   position: absolute;
+  display: flex;
   top: 50%;
   width: 47px;
   height: 48px;
+  align-items: center;
+  justify-content: center;
   border: 0;
   color: #fff;
   background: rgb(32 42 53 / 60%);
   font-size: 38px;
+  line-height: 1;
   transform: translateY(-50%);
   transition: background 0.2s;
 }

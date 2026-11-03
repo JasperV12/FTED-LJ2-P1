@@ -1,6 +1,7 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 
+/** Hero slider content */
 const heroSlides = [
   {
     image: '/images/hero-construction.jpg',
@@ -14,6 +15,7 @@ const heroSlides = [
   },
 ]
 
+/** Information cards for the introduction section */
 const whoWeAre = [
   {
     image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=900&q=85',
@@ -32,6 +34,7 @@ const whoWeAre = [
   },
 ]
 
+/** Projects shown in the projects section */
 const projects = [
   { image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1000&q=85', category: 'interior', title: 'Modern family residence', text: 'A light-filled interior designed for everyday living.' },
   { image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1000&q=85', category: 'building', title: 'Contemporary house', text: 'Clean architecture with a strong connection to nature.' },
@@ -41,6 +44,7 @@ const projects = [
   { image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85', category: 'building', title: 'Palm house', text: 'A sustainable home with room to breathe.' },
 ]
 
+/** Project filters and their display order */
 const filters = ['all', 'building', 'consulting', 'interior', 'office']
 const filterOrders = {
   all: [0, 1, 2, 3, 4, 5],
@@ -49,18 +53,23 @@ const filterOrders = {
   interior: [3, 0, 5, 2, 4, 1],
   office: [1, 4, 2, 0, 5, 3],
 }
+
+/** Reactive state for the slider, filters and mobile menu */
 const slide = ref(0)
 const filter = ref('all')
 const menuOpen = ref(false)
 let timer
 
+/** Values derived from the current slider and filter state */
 const currentSlide = computed(() => heroSlides[slide.value])
 const visibleProjects = computed(() => filterOrders[filter.value].map((index) => projects[index]))
 
+/** Change the active hero slide */
 function nextSlide(direction = 1) {
   slide.value = (slide.value + direction + heroSlides.length) % heroSlides.length
 }
 
+/** Start the automatic slider and clean it up when the component unmounts */
 onMounted(() => {
   timer = window.setInterval(() => nextSlide(), 6000)
 })
@@ -70,6 +79,7 @@ onUnmounted(() => window.clearInterval(timer))
 
 <template>
   <main>
+    <!-- Site header and navigation -->
     <header class="site-header">
       <div class="topbar container">
         <a class="logo" href="#top" aria-label="BuildIcon home">
@@ -114,6 +124,7 @@ onUnmounted(() => window.clearInterval(timer))
       </nav>
     </header>
 
+    <!-- Hero slider -->
     <section class="hero" id="top">
       <img :key="slide" class="hero-image" :src="currentSlide.image" :alt="currentSlide.kicker">
       <div class="hero-overlay" />
@@ -132,6 +143,7 @@ onUnmounted(() => window.clearInterval(timer))
       <button class="hero-arrow next" aria-label="Next slide" @click="nextSlide()">›</button>
     </section>
 
+    <!-- Introduction call to action -->
     <section class="intro-strip">
       <div class="container intro-content">
         <h2>We Are BuildWall</h2>
@@ -140,6 +152,7 @@ onUnmounted(() => window.clearInterval(timer))
       </div>
     </section>
 
+    <!-- Information cards -->
     <section class="who-section" id="who-we-are">
       <div class="container cards-grid">
         <article v-for="card in whoWeAre" :key="card.title" class="info-card">
@@ -153,6 +166,7 @@ onUnmounted(() => window.clearInterval(timer))
       </div>
     </section>
 
+    <!-- Filterable projects -->
     <section class="projects-section" id="projects">
       <div class="project-heading">
         <h2>FEATURED PROJECTS</h2>
@@ -168,6 +182,7 @@ onUnmounted(() => window.clearInterval(timer))
       </div>
     </section>
 
+    <!-- Footer and back-to-top link -->
     <footer id="contact"><div class="container"><strong>Build<span>Icon</span></strong><p>Quality construction. Trusted partnerships.</p></div></footer>
     <a class="to-top" href="#top" aria-label="Back to top">↑ <span>TOP</span></a>
   </main>
